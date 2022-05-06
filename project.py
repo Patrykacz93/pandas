@@ -8,9 +8,9 @@ df = pd.read_csv('data/cars.csv', sep=';')
 def column_name():
     namecolumn = [i for i in df.columns]
     return namecolumn
-# df1 = df.drop(0)
-# df1.reset_index(drop=True, inplace=True)
-# print(df1)
+df1 = df.drop(0)
+df1.reset_index(drop=True, inplace=True)
+print(df1)
 
 # Sprawdzenie czy w kolumnach są puste pola
 for column in column_name():
