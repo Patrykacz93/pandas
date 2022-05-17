@@ -47,7 +47,6 @@ swapped_series_greather_than = swapped_series.loc[lambda x: x > 100]
 what_nation = df1.Origin.value_counts()
 
 # Obliczanie średnich wartości kolumn i dodanie ich do kolejnego DataFrame
-df2 = pd.DataFrame()
 MPG_mean = df1['MPG'].mean()
 Cylinders_mean = df1['Cylinders'].mean()
 Displacement_mean = df1['Displacement'].mean()
@@ -56,14 +55,22 @@ Weight_mean = df1['Weight'].mean()
 Acceleration_mean = df1['Acceleration'].mean()
 Model_mean = df1['Model'].mean()
 
-df2 = df2.append({'MPGMean': MPG_mean,
-                  'CylindersMean': Cylinders_mean,
-                  'DisplacementMean': Displacement_mean,
-                  'HorsepowerMean': Horsepower_mean,
-                  'WeightMean': Weight_mean,
-                  'AccelerationMean': Acceleration_mean,
-                  'ModelMean': Model_mean},
-                   ignore_index=True)
+
+df2 = pd.DataFrame({'Name':['MPGMean',
+                            'CylindersMean',
+                            'DisplacementMean',
+                            'HorsepowerMean',
+                            'WeightMean',
+                            'AccelerationMean',
+                            'ModelMean'],
+                    'Value': [MPG_mean,
+                              Cylinders_mean,
+                              Displacement_mean,
+                              Horsepower_mean,
+                              Weight_mean,
+                              Acceleration_mean,
+                              Model_mean]})
+
 
 # Wykresy 1
 print(type_of_cylinders)
@@ -88,4 +95,7 @@ plt.xlabel('Kraj')
 plt.ylabel('Ilość samochodów')
 plt.subplots_adjust(wspace=1,
                     hspace=1)
+
+#Wykres 2
+df2.plot.pie(x='Name', y='Value')
 plt.show()
