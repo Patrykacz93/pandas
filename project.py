@@ -62,9 +62,14 @@ def nation():
     what_nation = df1.Origin.value_counts()
     return what_nation
 
-def adding_new_column(name_new_column, name_col, column_location):
-    new_dataframe = df1.insert(loc=column_location, column= name_new_column, value=df1[name_col] +1)
-    return new_dataframe
+def adding_new_column(column_location, name_new_column, name_col):
+    df1.insert(loc=column_location, column= name_new_column, value=df1[name_col] + 1)
+    return df1
+
+def show_row_of_numpy_array(row_number):
+    new_numpy_dataframe = df1.to_numpy()
+    print(new_numpy_dataframe[row_number])
+    return new_numpy_dataframe
 
 # Obliczanie średnich wartości kolumn i dodanie ich do kolejnego DataFrame
 MPG_mean = df1['MPG'].mean()
@@ -136,15 +141,17 @@ df2.plot.pie(x='Name', y='Value', figsize = (10 ,6),
 
 fig, axs = plt.subplots(ncols=2)
 seaborn_chart = sns.histplot(x= df1['Horsepower'], y= df1['MPG'], ax=axs[0])
-seaborn_chart.set_title('wykresik')
+seaborn_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych z sns')
 dataframe_chart = df1.plot.scatter(x= 'Horsepower', y= 'MPG', ax=axs[1])
-dataframe_chart.set_title('wykresik2')
+dataframe_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych')
 fig.show()
 
 plt.show()
 
 
+#Wywołanie funkcji adding_new_column w celu dodania nowej kolumny o dodolnych argumentach;
+print(adding_new_column(1, 'Nowakolumna', 'MPG'))
 #Wywołanie funkcji car_search_string w celu wyszukania marki pojazdu;
 print(car_search_string('Car', 'Fiat'))
-
-print(adding_new_column('Nufka', 'MPG', 8))
+#Wywołanie wiersza DataFrame jako lista z numpy array;
+show_row_of_numpy_array(2)
