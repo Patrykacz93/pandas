@@ -14,4 +14,9 @@ W ostatnim etapie podane funkcje zostały wykorzystane do przedstawienia danych 
 
 Plik csv znajduje się w folderze data;
 
-Przed uruchomieniem programu należy zainstalować odpowiednie biblioteki;
+Przed uruchomieniem programu należy zainstalować odpowiednie biblioteki lub skorzystac w pliku requirements;
+
+pip install matplotlib
+pip install seaborn
+pip install numpy
+pip install pandas
