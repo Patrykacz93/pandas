@@ -2,7 +2,7 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import function as f
+import car_data_utilities as f
 
 
 # Obliczanie średnich wartości kolumn i dodanie ich do kolejnego DataFrame
@@ -39,23 +39,22 @@ df2 = pd.DataFrame({'Name':['MPGMean',
 
 
 # Tworzenie wyklresu 1
-print(f.value_count_by_index())
 plt.subplot(3, 1, 1)
-f.value_count_by_index().plot.bar(x=1, y=2, rot=0)
+f.counting_unique_values_in_cylinders_series().plot.bar(x=1, y=2, rot=0)
 plt.title('Rodzaj cylindrów')
 plt.xlabel('Ilość cylindrów')
 plt.ylabel('Ilość samochodów')
 
 
 plt.subplot(3, 1, 2)
-f.swapp_series().plot.bar(x=1, y=2, rot=0, color = 'red')
+f.swapp_index_with_value_in_series().plot.bar(x=1, y=2, rot=0, color = 'red')
 plt.title('Ilość samochodów z mocą powyżej 100km')
 plt.xlabel('Moc samochodów')
 plt.ylabel('Ilość samochodów')
 
 
 plt.subplot(3, 1, 3)
-f.nation().plot.bar(x=1, y=2, rot=0, color = 'green')
+f.get_car_amount_per_country().plot.bar(x=1, y=2, rot=0, color = 'green')
 plt.title('Ilość samochodów z danego kraju')
 plt.xlabel('Kraj')
 plt.ylabel('Ilość samochodów')
@@ -63,7 +62,7 @@ plt.subplots_adjust(wspace=1,
                     hspace=1)
 
 #Zapis wykresu do pliku pdf
-plt.savefig('charts/Wykresy_kolumnowe.pdf', bbox_inches='tight',pad_inches=2)
+plt.savefig('saved_charts_in_pdf_format/Wykresy_kolumnowe.pdf', bbox_inches='tight',pad_inches=2)
 
 # Tworzenie wyklresu 2
 colors = ['yellowgreen', 'red', 'gold', 'lightskyblue',
@@ -77,7 +76,7 @@ df2.plot.pie(x='Name', y='Value', figsize = (10 ,6),
              shadow = True, explode = explode, labeldistance=None)
 
 #Zapis wykresu do pliku pdf
-plt.savefig('charts/Wykres_kołowy_średnich_wartości.pdf', bbox_inches='tight', pad_inches=2)
+plt.savefig('saved_charts_in_pdf_format/Wykres_kołowy_średnich_wartości.pdf', bbox_inches='tight', pad_inches=2)
 
 # Tworzenie wyklresu 3
 fig, axs = plt.subplots(ncols=2, figsize = (12,5))
@@ -87,15 +86,15 @@ dataframe_chart = f.df1.plot.scatter(x= 'Horsepower', y= 'MPG', ax=axs[1])
 dataframe_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych')
 
 #Zapis wykresu do pliku pdf
-plt.savefig('charts/Wykresy_złożone_porównawcze.pdf', bbox_inches='tight', pad_inches=2)
+plt.savefig('saved_charts_in_pdf_format/Wykresy_złożone_porównawcze.pdf', bbox_inches='tight', pad_inches=2)
 fig.show()
 
 plt.show()
 
 
 #Wywołanie funkcji adding_new_column w celu dodania nowej kolumny o dodolnych argumentach;
-print(f.adding_new_column(1, 'Nowakolumna', 'MPG'))
+f.adding_new_column_in_dataframe(1, 'Nowakolumna', 'MPG')
 #Wywołanie funkcji car_search_string w celu wyszukania marki pojazdu;
-print(f.car_search_string('Car', 'Fiat'))
+f.searching_car_name_string('Car', 'Fiat')
 #Wywołanie wiersza DataFrame jako lista z numpy array;
 f.show_row_of_numpy_array(2)
