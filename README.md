@@ -12,7 +12,7 @@ wyczyszczenia pól ze zbędnych danych takich jak puste pola czy średniki. Doda
 
 W ostatnim etapie podane funkcje zostały wykorzystane do przedstawienia danych na wykresach które zostaja zapisane do folderu 'charts' w formacie pdf.
 
-**Plik csv znajduje się w folderze data.**
+**Plik csv znajduje się w folderze folder_with_data_in_csv_format.**
 
 ## Przed uruchomieniem programu należy zainstalować odpowiednie biblioteki lub skorzystac w pliku requirements.
 ````
