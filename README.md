@@ -3,8 +3,8 @@
 Poniższy projekt zwiera dane samochodowe zapisane w pliku csv. oraz funkcje napisane w języku python w celu 
 wyczyszczenia pól ze zbędnych danych takich jak puste pola czy średniki. Dodatkowo zostały utworzone funkcje:
 
-- obliczania wartości średnich, 
-- zmiany typu komórek, 
+i. obliczania wartości średnich, 
+ii. zmiany typu komórek, 
 - dodawana nowych kolumn do tabeli o dowolnych paramertach, 
 - wyznaczania dowolnego wiersza,
 - przeszukiwanie kolumny z nazwami samochodów w celu znaleznienia danych modelów,
