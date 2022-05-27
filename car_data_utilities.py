@@ -25,7 +25,7 @@ def displaying_column_labels(car_data: pd.DataFrame) -> list:
 
 
 def checking_empty_area_in_columns(car_data: pd.DataFrame):
-    for column in displaying_column_labels():
+    for column in displaying_column_labels(car_data):
         check = car_data[column].isnull()
         print(f'Wynik sprawdzania pustych pól w kolumnie {column}: ')
         if check is True:

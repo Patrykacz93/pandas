@@ -2,13 +2,16 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-from car_data_utilities import drop_index_and_change_column_type, counting_unique_values_in_cylinders_series, swapp_index_with_value_in_series, get_car_amount_per_country, adding_new_column_in_dataframe, searching_car_name_string, show_row_of_numpy_array
+from car_data_utilities import drop_index_and_change_column_type, counting_unique_values_in_cylinders_series, swapp_index_with_value_in_series, get_car_amount_per_country, adding_new_column_in_dataframe, searching_car_name_string, show_row_of_numpy_array, checking_empty_area_in_columns
 
-#Wczytanie danych o podanej ścieżce;
+# Wczytanie danych o podanej ścieżce;
 df = pd.read_csv('folder_with_data_in_csv_format/carsdata.csv', sep=';')
 
-#W przypadku tego DataFrame w pierwszej kolejności należy użyć dedykowanej funkcji do zmiany typu danych w kolumnach;
+# W przypadku tego DataFrame w pierwszej kolejności należy użyć dedykowanej funkcji do zmiany typu danych w kolumnach;
 df1 = drop_index_and_change_column_type(df)
+
+# Sprawdzenie pustych pól w DataFrame;
+checking_empty_area_in_columns(df1)
 
 # Obliczanie średnich wartości kolumn i dodanie ich do kolejnego DataFrame
 MPG_mean = df1['MPG'].mean()
@@ -19,7 +22,7 @@ Weight_mean = df1['Weight'].mean()
 Acceleration_mean = df1['Acceleration'].mean()
 Model_mean = df1['Model'].mean()
 
-#Utworzenie nowego DataDrame w celu utworzenia wykresu kołowego
+# Utworzenie nowego DataDrame w celu utworzenia wykresu kołowego
 df2 = pd.DataFrame({'Name':['MPGMean',
                             'CylindersMean',
                             'DisplacementMean',
@@ -67,7 +70,7 @@ plt.ylabel('Ilość samochodów')
 plt.subplots_adjust(wspace=1,
                     hspace=1)
 
-#Zapis wykresu do pliku pdf
+# Zapis wykresu do pliku pdf
 plt.savefig('saved_charts_in_pdf_format/Wykresy_kolumnowe.pdf', bbox_inches='tight',pad_inches=2)
 
 # Tworzenie wyklresu 2
@@ -81,7 +84,7 @@ df2.plot.pie(x='Name', y='Value', figsize = (10 ,6),
              colors=colors, radius=1.2, startangle=90,
              shadow = True, explode = explode, labeldistance=None)
 
-#Zapis wykresu do pliku pdf
+# Zapis wykresu do pliku pdf
 plt.savefig('saved_charts_in_pdf_format/Wykres_kołowy_średnich_wartości.pdf', bbox_inches='tight', pad_inches=2)
 
 # Tworzenie wyklresu 3
@@ -91,15 +94,15 @@ seaborn_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych z
 dataframe_chart = df1.plot.scatter(x= 'Horsepower', y= 'MPG', ax=axs[1])
 dataframe_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych')
 
-#Zapis wykresu do pliku pdf
+# Zapis wykresu do pliku pdf
 plt.savefig('saved_charts_in_pdf_format/Wykresy_złożone_porównawcze.pdf', bbox_inches='tight', pad_inches=2)
 fig.show()
 
 plt.show()
 
-#Wywołanie funkcji adding_new_column w celu dodania nowej kolumny o dodolnych argumentach;
+# Wywołanie funkcji adding_new_column w celu dodania nowej kolumny o dodolnych argumentach;
 adding_new_column_in_dataframe(1, 'Nowakolumna', 'MPG', df1)
-#Wywołanie funkcji car_search_string w celu wyszukania marki pojazdu;
+# Wywołanie funkcji car_search_string w celu wyszukania marki pojazdu;
 searching_car_name_string('Car', 'Fiat', df1)
-#Wywołanie wiersza DataFrame jako lista z numpy array;
+# Wywołanie wiersza DataFrame jako lista z numpy array;
 show_row_of_numpy_array(2, df1)
