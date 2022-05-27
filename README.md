@@ -16,8 +16,8 @@ W ostatnim etapie podane funkcje zostały wykorzystane do przedstawienia danych 
 
 ## Przed uruchomieniem programu należy zainstalować odpowiednie biblioteki lub skorzystac w pliku requirements.
 ````
-pip install matplotlib
-pip install seaborn
-pip install numpy
-pip install pandas
+- pip install matplotlib
+- pip install seaborn
+- pip install numpy
+- pip install pandas
 ````

@@ -2,17 +2,22 @@ import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
-import car_data_utilities as f
+from car_data_utilities import drop_index_and_change_column_type, counting_unique_values_in_cylinders_series, swapp_index_with_value_in_series, get_car_amount_per_country, adding_new_column_in_dataframe, searching_car_name_string, show_row_of_numpy_array
 
+#Wczytanie danych o podanej ścieżce;
+df = pd.read_csv('folder_with_data_in_csv_format/carsdata.csv', sep=';')
+
+#W przypadku tego DataFrame w pierwszej kolejności należy użyć dedykowanej funkcji do zmiany typu danych w kolumnach;
+df1 = drop_index_and_change_column_type(df)
 
 # Obliczanie średnich wartości kolumn i dodanie ich do kolejnego DataFrame
-MPG_mean = f.df1['MPG'].mean()
-Cylinders_mean = f.df1['Cylinders'].mean()
-Displacement_mean = f.df1['Displacement'].mean()
-Horsepower_mean = f.df1['Horsepower'].mean()
-Weight_mean = f.df1['Weight'].mean()
-Acceleration_mean = f.df1['Acceleration'].mean()
-Model_mean = f.df1['Model'].mean()
+MPG_mean = df1['MPG'].mean()
+Cylinders_mean = df1['Cylinders'].mean()
+Displacement_mean = df1['Displacement'].mean()
+Horsepower_mean = df1['Horsepower'].mean()
+Weight_mean = df1['Weight'].mean()
+Acceleration_mean = df1['Acceleration'].mean()
+Model_mean = df1['Model'].mean()
 
 #Utworzenie nowego DataDrame w celu utworzenia wykresu kołowego
 df2 = pd.DataFrame({'Name':['MPGMean',
@@ -40,21 +45,22 @@ df2 = pd.DataFrame({'Name':['MPGMean',
 
 # Tworzenie wyklresu 1
 plt.subplot(3, 1, 1)
-f.counting_unique_values_in_cylinders_series().plot.bar(x=1, y=2, rot=0)
+counting_unique_values_in_cylinders_series(df1).plot.bar(x=1, y=2, rot=0)
 plt.title('Rodzaj cylindrów')
 plt.xlabel('Ilość cylindrów')
 plt.ylabel('Ilość samochodów')
 
 
+
 plt.subplot(3, 1, 2)
-f.swapp_index_with_value_in_series().plot.bar(x=1, y=2, rot=0, color = 'red')
+swapp_index_with_value_in_series(df1).plot.bar(x=1, y=2, rot=0, color = 'red')
 plt.title('Ilość samochodów z mocą powyżej 100km')
 plt.xlabel('Moc samochodów')
 plt.ylabel('Ilość samochodów')
 
 
 plt.subplot(3, 1, 3)
-f.get_car_amount_per_country().plot.bar(x=1, y=2, rot=0, color = 'green')
+get_car_amount_per_country(df1).plot.bar(x=1, y=2, rot=0, color = 'green')
 plt.title('Ilość samochodów z danego kraju')
 plt.xlabel('Kraj')
 plt.ylabel('Ilość samochodów')
@@ -80,9 +86,9 @@ plt.savefig('saved_charts_in_pdf_format/Wykres_kołowy_średnich_wartości.pdf',
 
 # Tworzenie wyklresu 3
 fig, axs = plt.subplots(ncols=2, figsize = (12,5))
-seaborn_chart = sns.histplot(x= f.df1['Horsepower'], y= f.df1['MPG'], ax=axs[0])
+seaborn_chart = sns.histplot(x= df1['Horsepower'], y= df1['MPG'], ax=axs[0])
 seaborn_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych z sns')
-dataframe_chart = f.df1.plot.scatter(x= 'Horsepower', y= 'MPG', ax=axs[1])
+dataframe_chart = df1.plot.scatter(x= 'Horsepower', y= 'MPG', ax=axs[1])
 dataframe_chart.set_title('Wykres zależności MPG od ilości koni mechanicznych')
 
 #Zapis wykresu do pliku pdf
@@ -91,10 +97,9 @@ fig.show()
 
 plt.show()
 
-
 #Wywołanie funkcji adding_new_column w celu dodania nowej kolumny o dodolnych argumentach;
-f.adding_new_column_in_dataframe(1, 'Nowakolumna', 'MPG')
+adding_new_column_in_dataframe(1, 'Nowakolumna', 'MPG', df1)
 #Wywołanie funkcji car_search_string w celu wyszukania marki pojazdu;
-f.searching_car_name_string('Car', 'Fiat')
+searching_car_name_string('Car', 'Fiat', df1)
 #Wywołanie wiersza DataFrame jako lista z numpy array;
-f.show_row_of_numpy_array(2)
+show_row_of_numpy_array(2, df1)
