@@ -1,4 +1,4 @@
-# Projekt z analizy danych
+# Projekt z analizy danych (analiza danych samochodowych)
 
 Poniższy projekt zwiera dane samochodowe zapisane w pliku csv. oraz funkcje napisane w języku python w celu 
 wyczyszczenia pól ze zbędnych danych takich jak puste pola czy średniki. Dodatkowo zostały utworzone funkcje:
